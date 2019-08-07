@@ -43,14 +43,14 @@
 		});
 	});
 
-	
+	var righttouch;
 	document.getElementById('moveright').addEventListener('touchstart',()=>{
 		var right1 =right + 1;
 		//console.log(right1);
 
 			var totalright = firebase.database().ref('total right');
 
-			totalright.push({
+			righttouch = totalright.push({
 				'right':right1
 			});
 			var rootRef1 = firebase.database().ref(); 
@@ -66,19 +66,19 @@
 			    });
 			}
 			document.getElementById('moveright').addEventListener('touchend',()=>{
-				totalright.remove();
+				righttouch.remove();
 			});
 	});
 
 
-
+	var uptouch;
 	document.getElementById('moveup').addEventListener('touchstart',()=>{
 		var up1 = up + 1;
 		//console.log(up1);
 
 			var totalup = firebase.database().ref('total up');
 
-			totalup.push({
+			uptouch = totalup.push({
 				'up':up1
 			});
 			var rootRef2 = firebase.database().ref();
@@ -94,17 +94,18 @@
 			    });
 			}
 		document.getElementById('moveup').addEventListener('touchend',()=>{ 
-			totalup.remove();
+			uptouch.remove();
 		});
 	});
-	////////////////////////////////////////////////
+
+	var downtouch;
 	document.getElementById('movedown').addEventListener('touchstart',()=>{
 		var down1 = down + 1;
 		//console.log(down1);
 
 			var totaldown = firebase.database().ref('total down');
 
-			totaldown.push({
+			downtouch = totaldown.push({
 				'down':down1
 			});
 			var rootRef3 = firebase.database().ref(); 
@@ -120,15 +121,6 @@
 			    });
 			}
 		document.getElementById('movedown').addEventListener('touchend',()=>{
-			totaldown.remove();
+			downtouch.remove();
 		});
-	});
-
-
-
-
-
-
- 
-
-   
+	});   
