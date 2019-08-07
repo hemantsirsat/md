@@ -25,16 +25,29 @@
 			totalleft.push({
 				'left':left1
 			});
+			var rootRef = firebase.database().ref(); 
+			var rootreq = rootRef.child("total left"); 
+			rootreq.on('value',getReq); 
+			function getReq(snap){ 
+			    var t1 = 0;
+			    snap.forEach(keyReq => { 
+			        var total = keyReq.val().left; 
+			        var t = parseInt(total); 
+			        t1 += t; 
+			        console.log(t1);
+			    });
+			}
 	});
 	document.getElementById('moveleft').addEventListener('touchend',()=>{
 		left1 = 0;
-		console.log(left1);
+		//console.log(left1);
 
 			var totalleft = firebase.database().ref('total left');
 
-			totalleft.push({
-				'left':left1
-			});
+			/*totalleft.push({
+				'left':left1*/
+				totalleft.child(left).remove();
+			
 	});
 	/////////////////////////////////////////////
 	document.getElementById('moveright').addEventListener('touchstart',()=>{
@@ -107,15 +120,43 @@ total_left.on('value',function(snapshot){
 	});
 });
 */
-var rootRef = firebase.database().ref(); 
-var rootreq = rootRef.child("total left"); 
-rootreq.on('value',getReq); 
-function getReq(snap){ 
-    var t1 = 0;
+
+
+var rootRef1 = firebase.database().ref(); 
+var rootreq1 = rootRef1.child("total right"); 
+rootreq1.on('value',getReq1); 
+function getReq1(snap){ 
+    var t11 = 0;
     snap.forEach(keyReq => { 
-        var total = keyReq.val().left; 
-        var t = parseInt(total); 
-        t1 += t; 
-        console.log(t1);
+        var total1 = keyReq.val().right; 
+        var t0 = parseInt(total1); 
+        t11 += t0; 
+        console.log(t11);
+    });
+}
+
+var rootRef2 = firebase.database().ref(); 
+var rootreq2 = rootRef2.child("total up"); 
+rootreq2.on('value',getReq2); 
+function getReq2(snap){ 
+    var t2 = 0;
+    snap.forEach(keyReq => { 
+        var total2 = keyReq.val().up; 
+        var t12 = parseInt(total2); 
+        t2 += t12; 
+        console.log(t2);
     });
 } 
+
+var rootRef3 = firebase.database().ref(); 
+var rootreq3 = rootRef3.child("total down"); 
+rootreq3.on('value',getReq3); 
+function getReq3(snap){ 
+    var t3 = 0;
+    snap.forEach(keyReq => { 
+        var total3 = keyReq.val().down; 
+        var t13 = parseInt(total3); 
+        t3 += t13; 
+        console.log(t3);
+    });
+}   
