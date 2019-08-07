@@ -16,13 +16,14 @@
 	var up = 0;
 	var down = 0;
 
+	var lefttouch;
 	document.getElementById('moveleft').addEventListener('touchstart',()=>{
 		var left1 = left + 1;
 		//console.log(left1);
 
 			var totalleft = firebase.database().ref('total left');
 
-			totalleft.push({
+			lefttouch = totalleft.push({
 				'left':left1
 			});
 			var rootRef = firebase.database().ref(); 
@@ -38,7 +39,7 @@
 			    });
 			}
 		document.getElementById('moveleft').addEventListener('touchend',()=>{
-			totalleft.remove();	
+			lefttouch.remove();	
 		});
 	});
 
